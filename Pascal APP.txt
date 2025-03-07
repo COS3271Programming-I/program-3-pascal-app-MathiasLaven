@@ -1,0 +1,39 @@
+package my_project;
+import java.util.Scanner;
+
+public class MyClass {
+    static Scanner userinput = new Scanner(System.in);
+    public static void main(String[] args) {
+    	
+		int [][] pascalTriangle = new int[11][11];
+		
+		for (int row = 0; row < pascalTriangle.length; row++) {
+			for (int column = 0; column < pascalTriangle[row].length; column++) {
+				
+				//top row cannot be generated from numbers above, needs override
+				if (row == 0 && column == 0) {
+					pascalTriangle[row][column] = 1;
+				} else if (row == 0) {
+					pascalTriangle[row][column] = 0;
+				} else if (column == 0) {
+					pascalTriangle[row][column] = pascalTriangle[row-1][column];
+				} else {
+					pascalTriangle[row][column] = pascalTriangle[row-1][column-1] + pascalTriangle[row-1][column];
+				}
+				
+				if (pascalTriangle[row][column] == 0) {
+					System.out.print("   ");
+				} else {
+					String spacer = "   ";
+					if (pascalTriangle[row][column] > 99) { spacer = " " ; }
+					else if (pascalTriangle[row][column] > 9) { spacer = "  "; }
+				
+					System.out.print(pascalTriangle[row][column] + spacer);
+				}
+			}
+			
+			System.out.print("\n");
+			
+		}
+    }
+}
